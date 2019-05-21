@@ -22,3 +22,36 @@ DOM.searchBtn.addEventListener("click", e => {
       })
 });
 
+function fetchData(url) {
+    return(
+    fetch(url).then(function(response) {
+      if(response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok.');
+    })  .then(function(data) {
+        const ul = document.getElementById('authors');
+        while (ul.lastChild) {
+          ul.removeChild(ul.lastChild);
+        }
+        let authors = data;
+        return authors.map(function(author) {
+          let li = createNode('li'),
+              img = createNode('img'),
+              span = createNode('span');
+          img.src = author.url;
+          append(li, img);
+          append(li, span);
+          append(ul, li);
+    }).catch(function(error) {
+      processError();
+    })
+    })
+    );
+    };
+    
+    function processError() {
+        DOM.resultsContainer.innerHTML = `<h2>An error occured while fetching the data</h2>`
+    }
+    
+    
