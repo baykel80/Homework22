@@ -14,10 +14,10 @@ const DOM = {
 }
 
 DOM.searchBtn.addEventListener("click", e => {
+DOM.resultsContainer.innerHTML ="";
   var number1 = document.getElementById("number1").value;
-  console.log(number1);
   if(number1==0){
-  var dogApiURL = "https://api.thecatapi.com/v1/images/search?limit=10"+number1;
+  var dogApiURL = "https://api.thecatapi.com/v12/images/search?limit=10";
   }
   else{
     var dogApiURL = "https://api.thecatapi.com/v1/images/search?limit="+number1;
@@ -25,20 +25,21 @@ DOM.searchBtn.addEventListener("click", e => {
   console.log("click");
 	fetchData(dogApiURL)
 		.then(res => {
-    }).catch(function(error) {
-        processError();
-      })
+    })
 });
 
 function fetchData(url) {
+
+    const ul = document.getElementById('authors');
     return(
     fetch(url).then(function(response) {
       if(response.ok) {
         return response.json();
       }
-      throw new Error('Network response was not ok.');
+      else{
+          console.log("error");
+      throw new Error('Network response was not ok.');}
     })  .then(function(data) {
-        const ul = document.getElementById('authors');
         while (ul.lastChild) {
           ul.removeChild(ul.lastChild);
         }
@@ -51,9 +52,14 @@ function fetchData(url) {
           append(li, img);
           append(li, span);
           append(ul, li);
+          var i= "ok";
+          return i;
+        })
     }).catch(function(error) {
       processError();
-    })
+      while (ul.lastChild) {
+        ul.removeChild(ul.lastChild);
+      }
     })
     );
     };
