@@ -16,8 +16,12 @@ const DOM = {
 DOM.searchBtn.addEventListener("click", e => {
 DOM.resultsContainer.innerHTML ="";
   var number1 = document.getElementById("number1").value;
-  if(number1==0){
-  var dogApiURL = "https://api.thecatapi.com/v12/images/search?limit=10";
+  console.log(number1);
+  if(number1==""){
+    var dogApiURL = "https://api.thecatapi.com/v1/images/search?limit=10";
+  }
+  else if(number1==0){
+      console.log("empty");
   }
   else{
     var dogApiURL = "https://api.thecatapi.com/v1/images/search?limit="+number1;
@@ -29,7 +33,6 @@ DOM.resultsContainer.innerHTML ="";
 });
 
 function fetchData(url) {
-
     const ul = document.getElementById('authors');
     return(
     fetch(url).then(function(response) {
@@ -67,5 +70,6 @@ function fetchData(url) {
     function processError() {
         DOM.resultsContainer.innerHTML = `<h2>An error occured while fetching the data</h2>`
     }
+
     
     
