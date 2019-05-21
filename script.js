@@ -1,5 +1,13 @@
 "use strict";
 
+function createNode(element) {
+    return document.createElement(element);
+}
+
+function append(parent, el) {
+  return parent.appendChild(el);
+}
+
 const DOM = {
 	resultsContainer: document.querySelector(".js-search_results"),
 	searchBtn: document.querySelector(".js-search_btn")
