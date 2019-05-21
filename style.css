@@ -81,3 +81,17 @@ body {
 	border-radius: 5px;
 	cursor: pointer;
 }
+img{
+    width: 100%;
+      border: 5px solid white;
+      border-radius: 5px;
+}
+  
+ul {
+    list-style-type: none;
+}
+#number1{
+    width: 100%;
+      border: 5px solid white;
+      border-radius: 5px;
+}
